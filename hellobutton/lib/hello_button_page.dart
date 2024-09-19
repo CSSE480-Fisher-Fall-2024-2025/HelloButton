@@ -8,8 +8,12 @@ class HelloButtonPage extends StatefulWidget {
 }
 
 class _HelloButtonPageState extends State<HelloButtonPage> {
+  var _counter = 0;
+
   @override
   Widget build(BuildContext context) {
+    const buttonTextStyle = TextStyle(fontSize: 30.0);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Hello Button"),
@@ -19,7 +23,10 @@ class _HelloButtonPageState extends State<HelloButtonPage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Count = 0"),
+          Text(
+            "Count = $_counter",
+            style: Theme.of(context).textTheme.headlineLarge,
+          ),
           const SizedBox(
             height: 40.0,
           ),
@@ -27,16 +34,37 @@ class _HelloButtonPageState extends State<HelloButtonPage> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               TextButton(
-                onPressed: null,
-                child: Text("Decrement"),
+                onPressed: () {
+                  print("You pressed Decrement!");
+
+                  setState(() {
+                    _counter--;
+                  });
+                },
+                child: Text(
+                  "Decrement",
+                  style: Theme.of(context).textTheme.displaySmall,
+                ),
               ),
               TextButton(
-                onPressed: null,
-                child: Text("Reset"),
+                onPressed: () {
+                  print("You pressed Reset!");
+                  setState(() {
+                    _counter = 0;
+                  });
+                },
+                child: Text("Reset",
+                    style: Theme.of(context).textTheme.displaySmall),
               ),
               TextButton(
-                onPressed: null,
-                child: Text("Increment"),
+                onPressed: () {
+                  print("You pressed Increment!");
+                  setState(() {
+                    _counter++;
+                  });
+                },
+                child: Text("Increment",
+                    style: Theme.of(context).textTheme.displaySmall),
               ),
             ],
           ),
